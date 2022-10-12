@@ -6,6 +6,8 @@ import { getMessagesES } from "./getMessages";
 import esEs from "date-fns/locale/es";
 
 import { CalendarModal } from "./CalendarModal";
+import { useUiStore } from "../../hooks/useUiStore";
+import { useCalendarStore } from "../../hooks/useCalendarStore";
 
 const locales = {
   es: esEs,
@@ -19,18 +21,11 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const events = [
-  {
-    title: "Inflables La Florida",
-    notes: "Av. Vicuña Mackenna Poniente",
-    start: new Date(),
-    end: addHours(new Date(), 2),
-    bgColor: "#fafafa",
-  },
-];
 
 function CalendarPage() {
 
+  const { openDateModal } = useUiStore();
+  const { events } = useCalendarStore();
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week');
 
   const eventStyleGetter = (event, start, end, isSelected) => {
@@ -47,7 +42,8 @@ function CalendarPage() {
   };
 
   const onDoubleClick = (event) => {
-    console.log({ doubleClick: event });
+    // console.log({ doubleClick: event });
+    openDateModal();
   };
 
   const onSelect = (event) => {
