@@ -14,10 +14,14 @@ export const calendarSlice = createSlice({
   name: "calendar",
   initialState: { events: [tempEvent], activeEvent: null },
   reducers: {
-    onSetActiveEvent : ( state, { payload }) => {
+    onSetActiveEvent: (state, { payload }) => {
       state.activeEvent = payload;
-    }
+    },
+    onAddNewEvent: (state, { payload }) => {
+      state.events.push( payload );
+      state.activeEvent = null;
+    },
   },
 });
 
-export const { onSetActiveEvent } = calendarSlice.actions;
+export const { onSetActiveEvent, onAddNewEvent } = calendarSlice.actions;

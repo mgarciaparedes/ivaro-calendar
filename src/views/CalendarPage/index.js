@@ -1,13 +1,15 @@
 import React, {useState} from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { addHours, parse, startOfWeek, getDay, format } from "date-fns";
+import { parse, startOfWeek, getDay, format } from "date-fns";
 import { getMessagesES } from "./getMessages";
 import esEs from "date-fns/locale/es";
 
 import { CalendarModal } from "./CalendarModal";
 import { useUiStore } from "../../hooks/useUiStore";
 import { useCalendarStore } from "../../hooks/useCalendarStore";
+
+import { FabAddNew } from "./FabAddNew";
 
 const locales = {
   es: esEs,
@@ -75,6 +77,8 @@ function CalendarPage() {
     />
 
     <CalendarModal/>
+
+    <FabAddNew />
     </>
   );
 }
