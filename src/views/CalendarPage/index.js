@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { parse, startOfWeek, getDay, format } from "date-fns";
@@ -8,6 +8,7 @@ import esEs from "date-fns/locale/es";
 import { CalendarModal } from "./CalendarModal";
 import { useUiStore } from "../../hooks/useUiStore";
 import { useCalendarStore } from "../../hooks/useCalendarStore";
+import { useStockStore } from "../../hooks/useStockStore";
 
 import { FabAddNew } from "./FabAddNew";
 import { FabDelete } from "./FabDelete";
@@ -29,7 +30,13 @@ function CalendarPage() {
 
   const { openDateModal } = useUiStore();
   const { events, setActiveEvent } = useCalendarStore();
+  const { stock, changeStockEvent } = useStockStore();
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week');
+
+  useEffect(() => {
+    console.log("Juegos=>",stock);
+  }, [])
+  
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     // console.log(event, start, end, isSelected);
@@ -47,6 +54,7 @@ function CalendarPage() {
   const onDoubleClick = (event) => {
     // console.log({ doubleClick: event });
     openDateModal();
+    changeStockEvent();
   };
 
   const onSelect = (event) => {
