@@ -10,6 +10,7 @@ import { useUiStore } from "../../hooks/useUiStore";
 import { useCalendarStore } from "../../hooks/useCalendarStore";
 
 import { FabAddNew } from "./FabAddNew";
+import { FabDelete } from "./FabDelete";
 
 const locales = {
   es: esEs,
@@ -79,6 +80,8 @@ function CalendarPage() {
     <CalendarModal/>
 
     <FabAddNew />
+
+    <FabDelete />
     </>
   );
 }
